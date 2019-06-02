@@ -1,0 +1,19 @@
+&__option {
+  position: absolute;
+  top: 100%; left: 0;
+  background: $white;
+  width: 100%;
+  border-radius: 4px;
+  max-height: 320px;
+  overflow: auto;
+  z-index: 1;
+
+  &-item {
+    padding: 4px 10px;
+    cursor: pointer;
+
+    &:hover {
+     background: $catskillWhite;
+    }
+  }
+}

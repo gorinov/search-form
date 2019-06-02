@@ -1,0 +1,18 @@
+&__control {
+  outline: 0;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid $casper;
+  padding: 0 10px;
+  font-size: 16px;
+  width: 100%;
+
+  &-container {
+    position: relative;
+    display: flex;
+  }
+
+  &.-custom {
+    padding: 0 30px;
+  }
+}

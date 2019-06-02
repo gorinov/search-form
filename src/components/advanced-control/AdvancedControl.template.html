@@ -1,0 +1,17 @@
+<div class="sf__row">
+    <div class="sf__field">
+        <label class="sf__label">Car brand</label>
+
+        <select class="sf__control" @change="setCarBrandIndex()" v-model="carBrand">
+            <option v-for="item in data.brand" :value="item">{{ item }}</option>
+        </select>
+    </div>
+
+    <div class="sf__field">
+        <label class="sf__label">Car model</label>
+
+        <select class="sf__control" v-model="carModel">
+            <option v-for="item in data.models[selectedCarBrandIndex]" :value="item" v-if="selectedCarBrandIndex !== null">{{ item }}</option>
+        </select>
+    </div>
+</div>

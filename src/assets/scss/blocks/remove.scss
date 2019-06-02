@@ -1,0 +1,14 @@
+&__remove {
+  font-size: 32px;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  position: absolute;
+  transform: rotate(45deg);
+
+  &.-control {
+    right: 10px;
+    line-height: 36px;
+    opacity: .5;
+  }
+}

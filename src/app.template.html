@@ -1,0 +1,44 @@
+<div class="sf">
+    <div class="sf__wrapper">
+        <div class="sf__row">
+            <div class="sf__field">
+                <label class="sf__label">Picking up</label>
+                <city-control @upChange="value => result.pickUpCity = value"
+                              :data="data.states"
+                              instance="up" placeholder='Try "New York"'>
+                </city-control>
+            </div>
+
+            <div class="sf__field">
+                <label class="sf__label">Dropping off</label>
+                <city-control @offChange="value => result.dropOffCity = value"
+                              :data="data.states"
+                              instance="off" placeholder="Same as pick-up">
+                </city-control>
+            </div>
+        </div>
+
+        <div class="sf__row">
+            <div class="sf__field">
+                <label class="sf__label">Pick-up date</label>
+                <datetime-control @onChangeDate="onChangeDate" instance="up" :dateOff="result.dropOffDate"></datetime-control>
+            </div>
+
+            <div class="sf__field">
+                <label class="sf__label">Drop-off date</label>
+                <datetime-control @onChangeDate="onChangeDate" instance="off" :dateUp="result.pickUpDate"></datetime-control>
+            </div>
+        </div>
+
+        <div class="sf__row">
+            <div class="sf__toggle" :class="{'-open': params.showAdvancedBlock}" @click="params.showAdvancedBlock = !params.showAdvancedBlock">Advanced options</div>
+        </div>
+        <div class="sf__advanced" v-if="params.showAdvancedBlock">
+            <advanced-control></advanced-control>
+        </div>
+
+        <div class="sf__row">
+            <button @click="send()">Send</button>
+        </div>
+    </div>
+</div>

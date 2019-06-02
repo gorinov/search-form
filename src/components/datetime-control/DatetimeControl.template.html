@@ -1,0 +1,20 @@
+<div class="sf__control-container">
+    <div class="sf__field">
+        <div class="sf__control-container">
+            <i class="sf__icon -type-calendar -state-control"></i>
+            <flat-pickr
+                    v-model="date"
+                    :config="dateConfig"
+                    class="sf__control -custom">
+            </flat-pickr>
+        </div>
+    </div>
+
+    <div class="sf__field">
+        <flat-pickr
+                v-model="time"
+                :config="timeConfig"
+                class="sf__control ">
+        </flat-pickr>
+    </div>
+</div>
