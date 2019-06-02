@@ -17,6 +17,9 @@
   &.-type-calendar:before {
     content: "\e901";
   }
+  &.-type-arrow:before {
+    content: "\e902";
+  }
 
   &.-state-control {
     position: absolute;

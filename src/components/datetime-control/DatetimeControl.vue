@@ -5,7 +5,7 @@
 
     export default {
         name: 'datetime-control',
-        props: ['instance', 'dateUp', 'dateOff'],
+        props: ['instance', 'pickUpDate', 'pickUpTime'],
         components: {
             flatPickr
         },
@@ -27,7 +27,8 @@
                 timeConfig: {
                     enableTime: true,
                     noCalendar: true,
-                    dateFormat: "H:i"
+                    dateFormat: "H:i",
+                    onChange: this.onChangeTime
                 }
             }
         },
@@ -36,7 +37,7 @@
                 this.time = '10:30';
             }
 
-            this.$emit(`onChangeDate`, {
+            this.$emit(`onChange`, {
                 date: this.date,
                 time: this.time,
                 instance: this.instance
@@ -44,8 +45,8 @@
         },
         watch: {
             // обновление даты окончания
-            dateUp: function minDate() {
-                const minDate = this.dateUp;
+            pickUpDate() {
+                const minDate = this.pickUpDate;
 
                 if (typeof this.date != Date) {
                     this.date = new Date(this.date);
@@ -56,13 +57,34 @@
                 }
 
                 this.$set(this.dateConfig, 'minDate', minDate);
+            },
+            // обновление времени окончания
+            pickUpTime() {
+                if (Date.parse(`01/01/2011 ${this.time}`) < Date.parse(`01/01/2011 ${this.pickUpTime}`)) {
+                    this.time = this.pickUpTime;
+                }
             }
         },
         methods: {
-            onChangeDate(date) {
-                this.$emit(`onChangeDate`, {
-                    date: date[0],
+            onChangeDate(dateObj) {
+                const date = dateObj[0];
+
+                this.$emit(`onChange`, {
+                    date: date,
                     time: this.time,
+                    instance: this.instance
+                });
+            },
+            onChangeTime(dateObj) {
+                const time = dateObj[0].toLocaleTimeString('en-US', {
+                    hour12: false,
+                    hour: "numeric",
+                    minute: "numeric"
+                });
+
+                this.$emit(`onChange`, {
+                    date: this.date,
+                    time: time,
                     instance: this.instance
                 });
             }

@@ -26,13 +26,19 @@
                     });
                 }
 
-                this.$emit(`${this.instance}Change`, this.value);
+                this.$emit(`onChange`, {
+                    city: this.value,
+                    instance: this.instance
+                });
             },
             setValue(value) {
                 this.value = value;
                 this.result = [];
 
-                this.$emit(`${this.instance}Change`, this.value);
+                this.$emit(`onChange`, {
+                    city: this.value,
+                    instance: this.instance
+                });
             },
             clearValue() {
                 this.value = '';

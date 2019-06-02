@@ -1,7 +1,13 @@
 &__field {
   flex-grow: 1;
+  flex-basis: 33.33%;
 
   &:not(:last-child) {
     margin-right: 20px;
+
+    @media (max-width: $bpMobileL) {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
   }
 }

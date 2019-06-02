@@ -2,16 +2,24 @@
     <div class="sf__field">
         <label class="sf__label">Car brand</label>
 
-        <select class="sf__control" @change="setCarBrandIndex()" v-model="carBrand">
-            <option v-for="item in data.brand" :value="item">{{ item }}</option>
+        <select class="sf__control" @change="setCarBrandIndex(); $emit('onChange', {carBrand: carBrand})" v-model="carBrand">
+            <option value="">No preference</option>
+            <option v-for="item in data.brands" :value="item">{{ item }}</option>
         </select>
     </div>
 
     <div class="sf__field">
         <label class="sf__label">Car model</label>
 
-        <select class="sf__control" v-model="carModel">
+        <select class="sf__control" @change="$emit('onChange', {carModel: carModel})" v-model="carModel" :disabled="selectedCarBrandIndex === null">
+            <option value="">No preference</option>
             <option v-for="item in data.models[selectedCarBrandIndex]" :value="item" v-if="selectedCarBrandIndex !== null">{{ item }}</option>
         </select>
+    </div>
+
+    <div class="sf__field">
+        <label class="sf__label">Discount code</label>
+
+        <input class="sf__control" v-model="discountCode" @change="$emit('onChange', {discountCode: discountCode})"/>
     </div>
 </div>

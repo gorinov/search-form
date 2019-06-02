@@ -1,0 +1,24 @@
+&__button {
+  display: inline-block;
+  text-align: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all .3s;
+  text-decoration: none;
+  user-select: none;
+  overflow: hidden;
+  border-radius: 4px;
+  padding: 0 20px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 16px;
+  background: $amaranth;
+  color: $white;
+  max-width: 280px;
+
+  &:hover {
+    background: darken($amaranth, 10%);
+  }
+}

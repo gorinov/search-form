@@ -1,0 +1,23 @@
+&__toggle {
+  color: $white;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+
+  .sf__icon {
+    font-size: .6em;
+    margin-left: 5px;
+
+    &:before {
+      display: block;
+    }
+  }
+
+  &.-open {
+    .sf__icon {
+      &:before {
+        transform: scale(-1);
+      }
+    }
+  }
+}

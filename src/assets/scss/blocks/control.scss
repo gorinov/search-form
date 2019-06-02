@@ -10,6 +10,22 @@
   &-container {
     position: relative;
     display: flex;
+
+    @media (max-width: $bpMobileS) {
+      flex-direction: column;
+    }
+
+    > .sf__field {
+      &:not(:last-child) {
+        @media (max-width: $bpMobileL) {
+          margin-right: 10px;
+        }
+
+        @media (max-width: $bpMobileS) {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
   &.-custom {

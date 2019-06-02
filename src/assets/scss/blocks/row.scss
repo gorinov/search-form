@@ -4,4 +4,8 @@
   &:not(:last-child) {
     margin-bottom: 20px;
   }
+
+  @media (max-width: $bpMobileL) {
+    flex-direction: column;
+  }
 }

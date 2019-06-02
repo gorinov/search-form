@@ -1,9 +1,9 @@
-<div class="sf">
+<form class="sf" @submit.prevent="send">
     <div class="sf__wrapper">
         <div class="sf__row">
             <div class="sf__field">
                 <label class="sf__label">Picking up</label>
-                <city-control @upChange="value => result.pickUpCity = value"
+                <city-control @onChange="onChangeCity"
                               :data="data.states"
                               instance="up" placeholder='Try "New York"'>
                 </city-control>
@@ -11,7 +11,7 @@
 
             <div class="sf__field">
                 <label class="sf__label">Dropping off</label>
-                <city-control @offChange="value => result.dropOffCity = value"
+                <city-control @onChange="onChangeCity"
                               :data="data.states"
                               instance="off" placeholder="Same as pick-up">
                 </city-control>
@@ -21,24 +21,26 @@
         <div class="sf__row">
             <div class="sf__field">
                 <label class="sf__label">Pick-up date</label>
-                <datetime-control @onChangeDate="onChangeDate" instance="up" :dateOff="result.dropOffDate"></datetime-control>
+                <datetime-control @onChange="onChangeDate" instance="up"></datetime-control>
             </div>
 
             <div class="sf__field">
                 <label class="sf__label">Drop-off date</label>
-                <datetime-control @onChangeDate="onChangeDate" instance="off" :dateUp="result.pickUpDate"></datetime-control>
+                <datetime-control @onChange="onChangeDate" instance="off" :pickUpDate="result.pickUpDate" :pickUpTime="result.pickUpTime"></datetime-control>
             </div>
         </div>
 
         <div class="sf__row">
-            <div class="sf__toggle" :class="{'-open': params.showAdvancedBlock}" @click="params.showAdvancedBlock = !params.showAdvancedBlock">Advanced options</div>
-        </div>
-        <div class="sf__advanced" v-if="params.showAdvancedBlock">
-            <advanced-control></advanced-control>
+            <div class="sf__toggle" :class="{'-open': params.showAdvancedBlock}" @click="params.showAdvancedBlock = !params.showAdvancedBlock">
+                Advanced options
+                <i class="sf__icon -type-arrow"></i>
+            </div>
         </div>
 
+        <advanced-control v-show="params.showAdvancedBlock" @onChange="onChangeAdvanced"></advanced-control>
+
         <div class="sf__row">
-            <button @click="send()">Send</button>
+            <button class="sf__button">{{ params.loading ? 'Sending..' : 'Send'}}</button>
         </div>
     </div>
-</div>
+</form>
