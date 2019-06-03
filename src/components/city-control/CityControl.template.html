@@ -1,7 +1,7 @@
 <div class="sf__control-container">
     <i class="sf__icon -type-location -state-control"></i>
 
-    <input class="sf__control -custom" v-model="value" @keyup="search" type="text" :placeholder="placeholder"/>
+    <input class="sf__control -custom" v-model="value" @keyup="search" type="text" :placeholder="placeholder" required/>
 
     <div class="sf__remove -control" v-if="value" @click="clearValue()">+</div>
 

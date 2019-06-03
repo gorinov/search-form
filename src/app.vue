@@ -82,7 +82,7 @@
                 try {
                     this.params.loading = false;
 
-                    const items = response.data.data.items;
+                    const items = response.data.data;
                     const itemsCount = items.length;
 
                     if (itemsCount) {

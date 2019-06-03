@@ -43,23 +43,57 @@
                 instance: this.instance
             });
         },
+        computed: {
+            selectedDate() {
+                let date = this.date;
+
+                if (date instanceof Date === false) {
+                    date = new Date(date);
+                }
+
+                date.setMilliseconds(0);
+
+                return date;
+            },
+            minDate() {
+                let date = this.pickUpDate;
+
+                if (date instanceof Date === false) {
+                    date = new Date(date);
+                }
+
+                date.setMilliseconds(0);
+
+                return date;
+            }
+        },
         watch: {
             // обновление даты окончания
             pickUpDate() {
-                const minDate = this.pickUpDate;
+                if (!this.date || !this.pickUpDate) {
+                    return;
+                }
 
-                if (typeof this.date != Date) {
+                if (this.date instanceof Date === false) {
                     this.date = new Date(this.date);
                 }
 
-                if (this.date < minDate) {
-                    this.date = minDate;
+                if (this.date < this.minDate) {
+                    this.date = this.minDate;
                 }
 
-                this.$set(this.dateConfig, 'minDate', minDate);
+                this.$set(this.dateConfig, 'minDate', this.minDate);
             },
             // обновление времени окончания
             pickUpTime() {
+                if (!this.date || !this.pickUpDate) {
+                    return;
+                }
+
+                if (this.selectedDate > this.minDate) { // если день не совпадает, пропускаем
+                    return;
+                }
+
                 if (Date.parse(`01/01/2011 ${this.time}`) < Date.parse(`01/01/2011 ${this.pickUpTime}`)) {
                     this.time = this.pickUpTime;
                 }
